@@ -1,0 +1,18 @@
+<h1 style="padding: 2%; font-weight: bold">Posts</h1>
+<div class="container">
+    <div *ngFor="let post of allPosts" class="row" style="margin-bottom: 2rem;">
+        <div class="col" style="margin: auto 0; text-align: center;">
+            <h4 style="font-weight: bold; margin-bottom: 0rem;">{{post.publish_day}}</h4>
+            <h6 style="font-weight: bold">{{post.publish_month}}</h6>
+        </div>
+        <div class="col-10 container-fluid mt--7">
+            <div class="card shadow" (click)="openPost(post.id)">
+                <div class="card-body">
+                    <h3 style="font-weight: bold">{{post.title}}</h3>
+                    <div>{{post.description}}</div>
+                    <div style="text-align: right; font-style: italic">- {{post.author}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

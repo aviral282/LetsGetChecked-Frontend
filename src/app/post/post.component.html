@@ -1,0 +1,80 @@
+<h1 style="padding: 2%; font-weight: bold">{{postResponse.title}}</h1>
+<div class="container">
+    <div class="row" style="margin-bottom: 2rem">
+        <div class="card shadow">
+            <div class="card-body">
+                <div bind-innerHTML="postResponse.content"></div>
+                <div style="text-align: right; font-style: italic">- {{postResponse.author}}
+                    ({{postResponse.publish_date}})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div (click)="replyToComment(null)"
+         style="float: right; font-style: italic; font-size: 1rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline">
+        Reply
+    </div>
+    <h4 style="font-weight: bold; clear: both">Replies</h4>
+    <div>
+
+        <ul style="list-style-type: none;">
+            <ng-container
+                    *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: postResponse.activity }"></ng-container>
+        </ul>
+        <ng-template #recursiveListTmpl let-list>
+            <li *ngFor="let item of list">
+                <div class="card shadow" style="margin-bottom: 0.5rem">
+                    <div class="card-body">
+                        <h6 style="font-weight: bold">{{ item.user }} :</h6>
+                        <div>{{ item.content }}</div>
+                        <div
+                                onclick="document.getElementById('confirmationDialog').style.display='block'"
+                                (click)="setupComment(item.id)"
+                                style="float: right; font-style: italic; font-size: 0.8rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline">
+                            Reply
+                        </div>
+                        <div [hidden]="item.user != userName" (click)="editComment(item.id)"
+                             style="float: right; font-style: italic; font-size: 0.8rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline; margin-right: 10px;">
+                            Edit
+                        </div>
+                    </div>
+                </div>
+                <ul *ngIf="item.replies.length > 0" style="list-style-type: none;">
+                    <ng-container
+                            *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: item.replies }"></ng-container>
+                </ul>
+            </li>
+        </ng-template>
+    </div>
+</div>
+
+<div id="confirmationDialog" class="modal" style="text-align: -webkit-center">
+    <div class="container">
+        <span onclick="document.getElementById('confirmationDialog').style.display='none'" class="close"
+              title="Close Modal">×</span>
+        <div style="margin-bottom: 2rem; width: 50%">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 style="font-weight: bold">Add Reply</h3>
+                    <textarea style="width: 100%" class="form-control form-control-alternative" id="replyToComment" rows="3" placeholder="Write a reply ..."></textarea>
+
+                    <div class="clearfix">
+                        <div class="row">
+                            <button type="button"
+                                    style="margin: 1em"
+                                    onclick="document.getElementById('confirmationDialog').style.display='none'"
+                                    class="col btn btn-primary">Cancel
+                            </button>
+                            <button type="button"
+                                    style="margin: 1em"
+                                    onclick="document.getElementById('confirmationDialog').style.display='none'"
+                                    class="col btn btn-danger blacktone"
+                                    (click)="replyToComment()">Reply
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
