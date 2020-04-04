@@ -63,9 +63,9 @@ jobs:
         run: npm run build
       
       - name: Sync and Change Directory to android
-        run: |
-          npx cap sync
-          cd android
-          
+        run: npx cap sync
+         
       - name: Build Android
-        run:  ./gradlew build
+        run: |
+          cd android
+          ./gradlew build
