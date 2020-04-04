@@ -78,6 +78,8 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload APK to branch
-        run: ./.github/scripts/upload-apk.sh
+        run: |
+          chmod +x .github/scripts/upload-apk.sh
+          ./.github/scripts/upload-apk.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
