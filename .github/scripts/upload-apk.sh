@@ -7,7 +7,7 @@ git clone --quiet --branch=apk https://aviral282:$GITHUB_TOKEN@github.com/aviral
 
 cd apk
 
-find ../android -type f -name '*.apk' -exec cp -v {} . \;
+find android -type f -name '*.apk' -exec cp -v {} . \;
 
 git checkout --orphan temporary
 
