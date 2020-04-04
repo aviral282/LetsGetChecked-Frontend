@@ -9,5 +9,5 @@ export class ConfigService {
     constructor() {
     }
 
-    public URL = 'http://localhost:3000/';
+    public URL = 'http://lets-get-checked-backend.herokuapp.com/';
 }
