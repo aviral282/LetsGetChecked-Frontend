@@ -1,0 +1,47 @@
+name: Github CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git fetch --prune --unshallow
+      
+      - uses: actions/cache@master
+        with:
+          path: |
+            ~/.npm
+            /usr/bin/heroku
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1.1.0
+
+      - name: Setup Heroku & Login
+        run: |
+          curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+          openssl aes-256-cbc -K ${{ secrets.HEROKU_KEY }} -iv ${{ secrets.HEROKU_IV }} -in .github/files/.heroku-conf.enc -out ~/.netrc -d
+          heroku git:remote -a lets-get-checked-frontend
+      
+      - name: Install Packages
+        run: npm i
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Deploy on Heroku
+        run: |
+          git config user.name "Github Actions"
+          git config user.email "noreply@actions.com"
+          git add . && git commit -m "Auto update on Heroku" && git push heroku master -f
