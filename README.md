@@ -2,7 +2,8 @@
 
 # LetsGetChecked-Frontend
 
-CI Deployment at : https://lets-get-checked-frontend.herokuapp.com/
+CI Deployment at : https://lets-get-checked-frontend.herokuapp.com/ <br>
+Latest Android Apk : [Debug App - Master](https://github.com/aviral282/LetsGetChecked-Frontend/raw/apk/app-debug.apk)
 
 # Screenshots
 
