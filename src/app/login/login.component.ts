@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NgxNavigationWithDataComponent} from 'ngx-navigation-with-data';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -8,13 +9,30 @@ import {NgxNavigationWithDataComponent} from 'ngx-navigation-with-data';
 })
 export class LoginComponent {
     focus;
-    loginName;
+    formData: any = new FormData();
+    loginForm: FormGroup;
 
-    constructor(private navCtrl: NgxNavigationWithDataComponent) {
+
+    constructor(
+        private navCtrl: NgxNavigationWithDataComponent,
+        private formBuilder: FormBuilder,
+    ) {
     }
 
+    async ngOnInit() {
+
+        this.loginForm = this.formBuilder.group({
+            title: ['', [Validators.required, Validators.minLength(4)]],
+        });
+    }
+
+
+
     navHome() {
-        this.navCtrl.navigate('posts', {name: this.loginName});
+        if (this.loginForm.invalid) {
+            return;
+        }
+        this.navCtrl.navigate('posts', { name: this.loginForm.controls['title'].value });
     }
 }
 
