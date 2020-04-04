@@ -11,10 +11,14 @@ import {Comments} from '../data/comment';
 })
 export class PostComponent implements OnInit {
 
-    userName = 'Amelia';
-    postId = 1;
+    userName;
+    postId;
 
     toAddId;
+    addedComment = '';
+
+    toEditId;
+    editedComment = '';
 
     postResponse: Post = new Post();
 
@@ -22,35 +26,63 @@ export class PostComponent implements OnInit {
         private navCtrl: NgxNavigationWithDataComponent,
         private _apiService: ApiService
     ) {
-        // this.userName = navCtrl.get('name');
-        // this.postId = navCtrl.get('id');
+        this.userName = navCtrl.get('name');
+        this.postId = navCtrl.get('id');
 
 
-        // if (this.userName === undefined || this.postId === undefined) {
-        //     navCtrl.navigate('');
-        // }
+        if (this.userName === undefined || this.postId === undefined) {
+            navCtrl.navigate('');
+        }
     }
 
     ngOnInit(): void {
+        this.refreshPage();
+    }
+
+    refreshPage() {
         this._apiService.getPostByID(this.postId).subscribe(data => {
             this.postResponse = data as Post;
 
             this._apiService.getPostComments(this.postId).subscribe(comments => {
                 this.postResponse.activity = comments as Comments[];
-                console.log(comments);
             });
         });
     }
 
     replyToComment() {
-
+        const currentDate = new Date();
+        this._apiService.addComment(this.postId, {
+            parent_id: this.toAddId,
+            user: this.userName,
+            date: currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate(),
+            content: this.addedComment
+        }).subscribe(_ => {
+            this.addedComment = '';
+            this.toAddId = null;
+            this.refreshPage();
+        });
     }
 
-    editComment(commentId) {
-
+    editComment() {
+        const currentDate = new Date();
+        this._apiService.updateComment(this.toEditId, {
+            user: this.userName,
+            content: this.editedComment,
+            date: currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate(),
+        }).subscribe(_ => {
+            this.editedComment = '';
+            this.toEditId = null;
+            this.refreshPage();
+        });
     }
 
-    setupComment(id) {
+    setupEditComment(commentId, comment) {
+        this.toEditId = commentId;
+        this.editedComment = comment;
+    }
+
+    setupReplyComment(id) {
         this.toAddId = id;
+        this.addedComment = '';
     }
 }

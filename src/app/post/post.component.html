@@ -10,7 +10,8 @@
             </div>
         </div>
     </div>
-    <div (click)="replyToComment(null)"
+    <div onclick="document.getElementById('confirmationDialog').style.display='block'"
+         (click)="setupReplyComment(null)"
          style="float: right; font-style: italic; font-size: 1rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline">
         Reply
     </div>
@@ -29,12 +30,14 @@
                         <div>{{ item.content }}</div>
                         <div
                                 onclick="document.getElementById('confirmationDialog').style.display='block'"
-                                (click)="setupComment(item.id)"
+                                (click)="setupReplyComment(item.id)"
                                 style="float: right; font-style: italic; font-size: 0.8rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline">
                             Reply
                         </div>
-                        <div [hidden]="item.user != userName" (click)="editComment(item.id)"
-                             style="float: right; font-style: italic; font-size: 0.8rem; margin: 0.2rem; font-weight: bold; cursor: pointer;display: inline; margin-right: 10px;">
+                        <div
+                                onclick="document.getElementById('editDialog').style.display='block'"
+                                [hidden]="item.user != userName" (click)="setupEditComment(item.id, item.content)"
+                                style="float: right; font-style: italic; font-size: 0.8rem; font-weight: bold; cursor: pointer;display: inline; margin: 0.2rem 10px 0.2rem 0.2rem;">
                             Edit
                         </div>
                     </div>
@@ -56,7 +59,9 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h3 style="font-weight: bold">Add Reply</h3>
-                    <textarea style="width: 100%" class="form-control form-control-alternative" id="replyToComment" rows="3" placeholder="Write a reply ..."></textarea>
+                    <textarea style="width: 100%" [(ngModel)]="addedComment"
+                              class="form-control form-control-alternative" rows="3"
+                              placeholder="Write a reply ..."></textarea>
 
                     <div class="clearfix">
                         <div class="row">
@@ -78,3 +83,38 @@
         </div>
     </div>
 </div>
+
+
+<div id="editDialog" class="modal" style="text-align: -webkit-center">
+    <div class="container">
+        <span onclick="document.getElementById('editDialog').style.display='none'" class="close"
+              title="Close Modal">×</span>
+        <div style="margin-bottom: 2rem; width: 50%">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 style="font-weight: bold">Edit Reply</h3>
+                    <textarea style="width: 100%" [(ngModel)]="editedComment"
+                              class="form-control form-control-alternative" id="editDialogText" rows="3"
+                              placeholder="Write a reply ..."></textarea>
+
+                    <div class="clearfix">
+                        <div class="row">
+                            <button type="button"
+                                    style="margin: 1em"
+                                    onclick="document.getElementById('editDialog').style.display='none'"
+                                    class="col btn btn-primary">Cancel
+                            </button>
+                            <button type="button"
+                                    style="margin: 1em"
+                                    onclick="document.getElementById('editDialog').style.display='none'"
+                                    class="col btn btn-danger blacktone"
+                                    (click)="editComment()">Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

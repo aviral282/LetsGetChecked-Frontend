@@ -8,7 +8,7 @@ import {NgxNavigationWithDataComponent} from 'ngx-navigation-with-data';
 })
 export class LoginComponent {
     focus;
-    loginName = 'Aditya';
+    loginName;
 
     constructor(private navCtrl: NgxNavigationWithDataComponent) {
     }
