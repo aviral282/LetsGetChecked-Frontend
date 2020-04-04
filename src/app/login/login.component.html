@@ -1,6 +1,7 @@
-<main>
+<main
+    style="  background-image: linear-gradient(135deg, rgba(76, 208, 143, 0.36) 0%, rgba(76, 208, 143, 0.36) 14.286%,rgba(67, 177, 138, 0.36) 14.286%, rgba(67, 177, 138, 0.36) 28.572%,rgba(57, 146, 133, 0.36) 28.572%, rgba(57, 146, 133, 0.36) 42.858%,rgba(48, 116, 128, 0.36) 42.858%, rgba(48, 116, 128, 0.36) 57.144%,rgba(38, 85, 123, 0.36) 57.144%, rgba(38, 85, 123, 0.36) 71.42999999999999%,rgba(29, 54, 118, 0.36) 71.43%, rgba(29, 54, 118, 0.36) 85.71600000000001%,rgba(19, 23, 113, 0.36) 85.716%, rgba(19, 23, 113, 0.36) 100.002%),linear-gradient(45deg, rgb(201, 54, 234) 0%, rgb(201, 54, 234) 16.667%,rgb(173, 57, 207) 16.667%, rgb(173, 57, 207) 33.334%,rgb(146, 60, 179) 33.334%, rgb(146, 60, 179) 50.001000000000005%,rgb(118, 62, 152) 50.001%, rgb(118, 62, 152) 66.668%,rgb(91, 65, 124) 66.668%, rgb(91, 65, 124) 83.33500000000001%,rgb(63, 68, 97) 83.335%, rgb(63, 68, 97) 100.002%) !important;  ">
     <section class="section section-shaped section-lg" style="height: 100vh">
-        <div class="shape shape-style-1 bg-gradient-default">
+        <div class="shape  custom-background">
             <span></span>
             <span></span>
             <span></span>
@@ -10,7 +11,18 @@
             <span></span>
             <span></span>
         </div>
-        <div class="container pt-lg-md">
+
+
+
+        <div class="container pt-lg-md" style="padding: 0 !important;">
+
+            <div class="row justify-content-center">
+
+                <img alt="Rounded image" class="img-fluid rounded " src="../../assets/img/brand/logo.png"
+                    style="width: 40%; margin: 6%;">
+
+            </div>
+
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card bg-secondary shadow border-0">
@@ -21,12 +33,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                                         </div>
-                                        <input class="form-control" [(ngModel)]="loginName" name="username" placeholder="Name" type="text"
-                                               (focus)="focus=true" (blur)="focus=false">
+                                        <input class="form-control" [(ngModel)]="loginName" name="username"
+                                            placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" (click)="navHome()"   class="btn btn-primary my-4">Login</button>
+                                    <button type="button" (click)="navHome()"
+                                        class="btn btn-primary my-4">Login</button>
                                 </div>
                             </form>
                         </div>

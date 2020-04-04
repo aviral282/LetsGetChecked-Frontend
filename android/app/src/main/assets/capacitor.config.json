@@ -1,0 +1,8 @@
+{
+  "appId": "com.test.lgctest",
+  "appName": "LGC Test",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/lets-get-checked-frontend/",
+  "cordova": {}
+}
