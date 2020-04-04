@@ -4,10 +4,11 @@ git config --global user.name "Github Actions"
 git config --global user.email "no-reply@gactions.com"
 
 git clone --quiet --branch=apk https://aviral282:$GITHUB_TOKEN@github.com/aviral282/LetsGetChecked-Frontend apk > /dev/null
-
+pwd
 cd apk
+pwd
 
-find . -type f -name '*.apk' -exec cp -v {} . \;
+find .. -type f -name '*.apk' -exec cp -v {} . \;
 
 git checkout --orphan temporary
 
