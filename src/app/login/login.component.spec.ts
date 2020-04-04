@@ -20,6 +20,7 @@ describe('LoginComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    // expect(component).toBeTruthy();
+    expect(component.formData).toEqual('I love pizza!');
   });
 });
