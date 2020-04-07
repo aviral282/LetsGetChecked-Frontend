@@ -31,6 +31,7 @@ import { PostComponent } from './post/post.component';
     providers: [
         NgxNavigationWithDataComponent
     ],
+    
     bootstrap: [AppComponent]
 })
 export class AppModule {
