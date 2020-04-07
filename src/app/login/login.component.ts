@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { regexValidators } from '../providers/validator';
+import {Component} from '@angular/core';
+import {NgxNavigationWithDataComponent} from 'ngx-navigation-with-data';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {regexValidators} from '../providers/validator';
 
 @Component({
     selector: 'app-login',
@@ -22,6 +22,10 @@ export class LoginComponent {
     ) {
     }
 
+    get f() {
+        return this.loginForm.controls;
+    }
+
     async ngOnInit() {
 
         this.loginForm = this.formBuilder.group({
@@ -31,15 +35,12 @@ export class LoginComponent {
         });
     }
 
-
-    get f() { return this.loginForm.controls; }
-
     navHome() {
         if (this.loginForm.invalid) {
             this.submitted = true;
             return;
         }
-        this.navCtrl.navigate('posts', { name: this.loginForm.controls['title'].value });
+        this.navCtrl.navigate('posts', {name: this.loginForm.controls['title'].value});
     }
 }
 

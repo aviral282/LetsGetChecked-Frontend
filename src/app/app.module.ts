@@ -6,11 +6,11 @@ import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app.routing';
 
 import {AppComponent} from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
 import {NgxNavigationWithDataComponent} from 'ngx-navigation-with-data';
 import {HttpClientModule} from '@angular/common/http';
-import { PostComponent } from './post/post.component';
+import {PostComponent} from './post/post.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +31,7 @@ import { PostComponent } from './post/post.component';
     providers: [
         NgxNavigationWithDataComponent
     ],
-    
+
     bootstrap: [AppComponent]
 })
 export class AppModule {

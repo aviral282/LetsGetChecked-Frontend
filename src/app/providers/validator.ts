@@ -1,4 +1,3 @@
-
 const PURE_EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // Passwords should be at least 8 characters long and should contain one number, one character and one special character.
@@ -8,7 +7,7 @@ const MOBILE_REGEXP = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-
 
 
 export const regexValidators = {
-  email: PURE_EMAIL_REGEXP,
-  password: PASSWORD_REGEXP,
-  mobile: MOBILE_REGEXP
+    email: PURE_EMAIL_REGEXP,
+    password: PASSWORD_REGEXP,
+    mobile: MOBILE_REGEXP
 };

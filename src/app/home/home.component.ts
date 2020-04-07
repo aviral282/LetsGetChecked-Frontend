@@ -28,17 +28,6 @@ export class HomeComponent implements OnInit {
         this.getAllPosts();
     }
 
-    private async getAllPosts() {
-        await this._apiService.getAllPosts().subscribe(data => {
-            (data as Post[]).forEach(post => {
-                post.publish_day = this.getPublishDate(post).getDay();
-                post.publish_month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(this.getPublishDate(post));
-                this.allPosts.push(post);
-            });
-            this.allPosts.sort((a, b) => this.dateDiffFromNow(a) - this.dateDiffFromNow(b));
-        });
-    }
-
     getPublishDate(post: Post) {
         const parts = post.publish_date.split('-');
         return new Date(parts[0], parts[1] - 1, parts[2]);
@@ -53,5 +42,16 @@ export class HomeComponent implements OnInit {
 
     openPost(id) {
         this.navCtrl.navigate('post', {id: id, name: this.userName});
+    }
+
+    private async getAllPosts() {
+        await this._apiService.getAllPosts().subscribe(data => {
+            (data as Post[]).forEach(post => {
+                post.publish_day = this.getPublishDate(post).getDay();
+                post.publish_month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(this.getPublishDate(post));
+                this.allPosts.push(post);
+            });
+            this.allPosts.sort((a, b) => this.dateDiffFromNow(a) - this.dateDiffFromNow(b));
+        });
     }
 }

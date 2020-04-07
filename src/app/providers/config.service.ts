@@ -6,8 +6,8 @@ import {Injectable} from '@angular/core';
 
 export class ConfigService {
 
+    public URL = 'https://lets-get-checked-backend.herokuapp.com/';
+
     constructor() {
     }
-
-    public URL = 'https://lets-get-checked-backend.herokuapp.com/';
 }

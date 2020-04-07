@@ -6,7 +6,7 @@
             <h6 style="font-weight: bold">{{post.publish_month}}</h6>
         </div>
         <div class="col-10 container-fluid mt--7">
-            <div class="card shadow" (click)="openPost(post.id)">
+            <div (click)="openPost(post.id)" class="card shadow">
                 <div class="card-body">
                     <h3 style="font-weight: bold">{{post.title}}</h3>
                     <div>{{post.description}}</div>
