@@ -24,7 +24,7 @@ jobs:
             ${{ runner.os }}-node-
       
       - name: Setup NodeJS
-        uses: actions/setup-node@v1.1.0
+        uses: actions/setup-node@v6.0.0
 
       - name: Setup Heroku & Login
         run: |
@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup NodeJS
-        uses: actions/setup-node@v1.1.0
+        uses: actions/setup-node@v6.0.0
       - name: Setup Java JDK
         uses: actions/setup-java@v1.3.0
         with:
