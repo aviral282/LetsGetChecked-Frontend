@@ -10,7 +10,7 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - run: |
           git fetch --prune --unshallow
       
@@ -48,7 +48,7 @@ jobs:
   android:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Setup NodeJS
         uses: actions/setup-node@v1.1.0
       - name: Setup Java JDK
